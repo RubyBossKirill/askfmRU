@@ -3,22 +3,21 @@ require 'openssl'
 class User < ApplicationRecord
     ITERATIONS = 20_000
     DIGEST = OpenSSL::Digest::SHA256.new
-
-    before_save :downcase_email_and_username
+    REGEX_FORMAT_EMAIL = /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/
+    REGEX_FORMAT_USERNAME = /\A[a-zA-Z0-9_]+\z/
 
     has_many :questions, dependent: :destroy
 
-    validates :email, :username, presence: true
-    validates :email, :username, uniqueness: { case_sensitive: false }
-    validates :email, format: { with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/, message: "must be a valid email address" }
-    validates :username, length: { in: 6..30 }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: "must be a valid username" }
-
     attr_accessor :password, :password_confirmation
 
+    validates :email, :username, presence: true
+    validates :email, :username, uniqueness: { case_sensitive: false }
+    validates :email, format: { with: REGEX_FORMAT_EMAIL, message: "must be a valid email address" }
+    validates :username, length: { in: 6..30 }, format: { with: REGEX_FORMAT_USERNAME , message: "must be a valid username" }
     validates :password, presence: true, confirmation: true, on: :create
     validates :password_confirmation, presence: true
 
-    before_save :encrypt_password
+    before_save :encrypt_password, :downcase_email_and_username
 
     def self.authenticate(email, password)
         user = find_by(email: email)
