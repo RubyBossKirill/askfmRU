@@ -4,11 +4,14 @@ class User < ApplicationRecord
     ITERATIONS = 20_000
     DIGEST = OpenSSL::Digest::SHA256.new
 
+    before_save :downcase_email_and_username
+
     has_many :questions, dependent: :destroy
 
     validates :email, :username, presence: true
-    validates :email, :username, uniqueness: true
+    validates :email, :username, uniqueness: { case_sensitive: false }
     validates :email, format: { with: /\A[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}\z/, message: "must be a valid email address" }
+    validates :username, length: { in: 6..30 }, format: { with: /\A[a-zA-Z0-9_]+\z/, message: "must be a valid username" }
 
     attr_accessor :password, :password_confirmation
 
@@ -49,6 +52,11 @@ class User < ApplicationRecord
                 )
             )
         end
+    end
+
+    def downcase_email_and_username
+        self.email = email.downcase
+        self.username = username.downcase
     end
 
 end
