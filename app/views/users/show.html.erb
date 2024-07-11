@@ -1,20 +1,12 @@
 <p style="color: green"><%= notice %></p>
 
 <div class="user">
-  <h1><% @user.username %></h1>
-  <h2>Имя: <% @user.name %></h2>
+  <h1><%= @user.username %></h1>
+  <h2>Имя: <%= @user.name %></h2>
 </div>
 
 <div class="questions-ask">
-  <%= render 'questions/_question.html.erb' %>
-</div>
-
-<div class="questions">
-  <% @question.each do |question| %>
-    <h2><%= question.title %></h2>
-    <h2><%= question.body %></h2>
-    <hr>
-  <% end %>
+  <%= render 'questions/question', questions: @user.questions %>
 </div>
 
 <div>

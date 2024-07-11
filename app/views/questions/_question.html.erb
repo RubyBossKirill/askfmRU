@@ -1,7 +1,7 @@
 <div class="questions">
-  <% @question.each do |question| %>
+  <% questions.each do |question| %>
     <h2><%= question.title %></h2>
     <h2><%= question.body %></h2>
-    <hr>
+    <hr style="height: 3px; background-color: black">
   <% end %>
 </div>
