@@ -5,6 +5,10 @@
   <h2>Имя: <%= @user.name %></h2>
 </div>
 
+<div class="questions-form">
+  <%= render 'questions/form', question: @user %>
+</div>
+
 <div class="questions-ask">
   <%= render 'questions/question', questions: @user.questions %>
 </div>
