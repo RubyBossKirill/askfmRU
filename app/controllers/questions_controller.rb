@@ -18,7 +18,7 @@ class QuestionsController < ApplicationController
     if @question.save
       redirect_to user_path(@user), notice: "Question was successfully created."
     else
-      render :new, status: :unprocessable_entity
+      redirect_to user_path(@user), alert: "Question not valid."
     end
   end
 
