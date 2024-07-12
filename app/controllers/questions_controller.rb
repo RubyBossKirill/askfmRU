@@ -1,5 +1,4 @@
 class QuestionsController < ApplicationController
-  before_action :set_question, only: %i[ show edit update ]
   before_action :set_user
 
   # GET /questions
@@ -30,6 +29,7 @@ class QuestionsController < ApplicationController
     end
 
     def set_user
-      @user = User.find_by(user_id: params[:user_id])
+      puts "set_user ПАРАМЕТРЫ #{params}"
+      @user = User.find_by(id: params[:user_id])
     end
 end

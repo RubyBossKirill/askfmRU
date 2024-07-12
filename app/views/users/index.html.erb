@@ -6,10 +6,10 @@
   <% @users.each do |user| %>
     <h2><%= user.username %></h2>
     <p>
-      <%= link_to "Show this user", user %>
+      <%= button_to "Show this user", user, method: :get %>
     </p>
     <hr style="background-color: black">
   <% end %>
 </div>
 
-<%= link_to "New user", new_user_path %>
+<%= button_to "New user", new_user_path, method: :get %>

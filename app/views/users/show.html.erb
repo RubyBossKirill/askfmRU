@@ -6,7 +6,8 @@
 </div>
 
 <div class="questions-form">
-  <%= render 'questions/form', question: @user %>
+  <%= render 'questions/form', question: @question %>
+  <hr style="background-color: black">
 </div>
 
 <div class="questions-ask">
@@ -14,6 +15,6 @@
 </div>
 
 <div>
-  <%= link_to "Edit this user", edit_user_path(@user) %> |
-  <%= link_to "Back to users", users_path %>
+  <%= button_to "Edit this user", edit_user_path(@user), method: :get %> |
+  <%= button_to "Back to users", users_path, method: :get %>
 </div>

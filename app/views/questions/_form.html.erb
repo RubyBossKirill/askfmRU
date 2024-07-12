@@ -1,27 +1,27 @@
-<%= form_for(@question) do |f| %>
-  <% if @question.errors.any? %>
+<%= form_with(model: question, url: user_questions_path(params[:id])) do |f| %>
+  <% if question.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(@question.errors.count, "error") %> prohibited this question from being saved:</h2>
+      <h2><%= pluralize(question.errors.count, "error") %> prohibited this question from being saved:</h2>
 
       <ul>
-        <% @question.errors.each do |error| %>
+        <% question.errors.each do |error| %>
           <li><%= error.full_message %></li>
         <% end %>
       </ul>
     </div>
-
-    <div class="form-question">
-      <div class="form-question-field">
-        <%= f.label :title, 'Тема вопроса', class: 'form-question-label' %>
-        <%= f.text_field :title, class: 'form-question-field' %>
-      </div>
-      <div class="form-question-field">
-        <%= f.label :body, 'Описание вопроса', class: 'form-question-label' %>
-        <%= f.text_field :body, class: 'form-question-field' %>
-      </div>
-      <div class="form-question-btn">
-        <%= f.submit 'Отправить вопрос', class: 'btn form-question-btn' %>
-      </div>
-    </div>
   <% end %>
+  <div class="form-question">
+    <div class="form-question-field">
+      <%= f.label :title, 'Тема вопроса', class: 'form-question-label' %>
+      <%= f.text_field :title, class: 'form-question-field' %>
+    </div>
+    <div class="form-question-field">
+      <%= f.label :body, 'Описание вопроса', class: 'form-question-label' %>
+      <%= f.text_field :body, class: 'form-question-field' %>
+    </div>
+    <div class="form-question-btn">
+      <%= f.submit 'Отправить вопрос', class: 'btn form-question-btn' %>
+    </div>
+  </div>
 <% end %>
+

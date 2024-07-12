@@ -22,10 +22,6 @@
       <%= f.text_field :body, class: 'form-text-field' %>
     </div>
 
-    <div class="form-question-field">
-      <% user_id = @user.id %>
-    </div>
-
     <div class="form-question-action">
       <%= f.sumbit 'Задать вопрос', class: 'btn form-question-action-btn '%>
     </div>
@@ -33,5 +29,5 @@
 </div>
 
 <div>
-  <%= link_to "Back to users", users_path %>
+  <%= button_to "Back to users", users_path, method: :get %>
 </div>

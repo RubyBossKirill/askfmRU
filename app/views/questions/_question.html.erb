@@ -1,7 +1,7 @@
 <div class="questions">
   <% questions.each do |question| %>
-    <h2><%= question.title %></h2>
-    <h2><%= question.body %></h2>
+    <h2>Тема: <%= question.title %></h2>
+    <h4>Вопрос: <%= question.body %></h4>
     <hr style="height: 3px; background-color: black">
   <% end %>
 </div>
