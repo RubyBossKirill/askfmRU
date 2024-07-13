@@ -1,2 +1,15 @@
-<h1>Sessions#new</h1>
-<p>Find me in app/views/sessions/new.html.erb</p>
+<h1>Войти на сайт</h1>
+
+<div class="form">
+  <%= form_tag sessions_path do %>
+    <div class="form-field">
+      <%= label_tag :email, 'Введите Email', class="form-label" %>
+      <%= text_field_tag :email, params[:email], class="form-text-field" %>
+    </div>
+
+    <div class="form-field">
+      <%= label_tag :password, 'Введите пароль', class="form-label" %>
+      <%= password_field_tag :password, class="form-text-field" %>
+    </div>
+  <% end %>
+</div>
