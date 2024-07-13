@@ -14,7 +14,7 @@ class QuestionsController < ApplicationController
   # POST /questions
   def create
     if current_user == nil
-      redirect_to sessions_path, alert: "Авторизуйтесь, чтобы задавать вопросы!"
+      redirect_to log_in_path, alert: "Авторизуйтесь, чтобы задавать вопросы!"
     else
       if current_user == @user
         redirect_to user_path(@user), alert: "Вы не можете задать сами себе вопрос"
