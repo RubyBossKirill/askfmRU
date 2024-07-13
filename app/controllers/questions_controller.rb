@@ -13,12 +13,15 @@ class QuestionsController < ApplicationController
 
   # POST /questions
   def create
-    @question = @user.questions.build(question_params)
-
-    if @question.save
-      redirect_to user_path(@user), notice: "Question was successfully created."
+    if current_user
+      redirect_to user_path(@user), alert: "Вы не можете задать сами себе вопрос"
     else
-      redirect_to user_path(@user), alert: "Question not valid."
+      @question = @user.questions.build(question_params)
+      if @question.save
+        redirect_to user_path(@user), notice: "Question was successfully created."
+      else
+        redirect_to user_path(@user), alert: "Question not valid."
+      end
     end
   end
 
@@ -29,7 +32,7 @@ class QuestionsController < ApplicationController
     end
 
     def set_user
-      puts "set_user ПАРАМЕТРЫ #{params}"
+      puts "CURRENT_USER#{current_user}"
       @user = User.find_by(id: params[:user_id])
     end
 end
