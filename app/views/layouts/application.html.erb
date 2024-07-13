@@ -10,6 +10,10 @@
   </head>
 
   <body>
+    <div class="header">
+      <%= button_to 'Зарегистрироваться', sing_up_path, class: "btn-registr", method: :get %>
+      <%= button_to 'Войти', log_in_path, class: "btn-log-in", method: :get %>
+    </div>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>">
         <%= message %>
