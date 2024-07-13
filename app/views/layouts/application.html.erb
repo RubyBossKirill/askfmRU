@@ -10,10 +10,15 @@
   </head>
 
   <body>
-    <div class="header">
+  <div class="header">
+    <% if current_user %>
+      <%= button_to 'Мой профиль', user_path(current_user), class: "btn-profile", method: :get %>
+      <%= button_to 'Выйти', log_out_path, class: "btn-log-out", method: :get %>
+    <% else %>    
       <%= button_to 'Зарегистрироваться', sing_up_path, class: "btn-registr", method: :get %>
       <%= button_to 'Войти', log_in_path, class: "btn-log-in", method: :get %>
-    </div>
+    <% end %>
+  </div>
     <% flash.each do |key, message| %>
       <div class="flash <%= key %>">
         <%= message %>

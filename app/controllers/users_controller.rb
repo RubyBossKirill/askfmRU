@@ -13,6 +13,7 @@ class UsersController < ApplicationController
 
   # GET /users/new
   def new
+    redirect_to root_path, notice: "Вы уже авторизованы!" if current_user.present?
     @user = User.new
   end
 
