@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
+  before_action :authorize_user, except: %i[ index show new create]
 
   # GET /users
   def index
@@ -50,5 +51,13 @@ class UsersController < ApplicationController
     # Only allow a list of trusted parameters through.
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :name, :username)
+    end
+
+    def authorize_user
+      reject_user unless @user == current_user
+    end
+
+    def reject_user
+      redirect_to root_path, notice: "Вы не можете редактировать другого пользователя"
     end
 end
