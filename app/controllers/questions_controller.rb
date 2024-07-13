@@ -29,6 +29,10 @@ class QuestionsController < ApplicationController
     end
   end
 
+  def destroy
+    redirect_to user_path(params[:user_id]), notice: "Вопрос удалён"
+  end
+
   private
     # Only allow a list of trusted parameters through.
     def question_params

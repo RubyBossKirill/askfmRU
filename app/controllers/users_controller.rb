@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_action :set_user, only: %i[ show edit update ]
-  before_action :authorize_user, except: %i[ index show new create]
+  before_action :authorize_user, except: %i[ index show new create ]
 
   # GET /users
   def index
@@ -9,7 +9,6 @@ class UsersController < ApplicationController
   
   # GET /users/1
   def show
-    @question = @user.questions.build
   end
 
   # GET /users/new

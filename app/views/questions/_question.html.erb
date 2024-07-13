@@ -1,7 +1,8 @@
 <div class="questions">
-  <% questions.each do |question| %>
+  <% questions.reject(&:new_record?).each do |question| %>
     <h2>Тема: <%= question.title %></h2>
     <h4>Вопрос: <%= question.body %></h4>
+    <%= button_to 'Удалить вопрос', user_question_path(question.id), method: :delete %>
     <hr style="height: 3px; background-color: black">
   <% end %>
 </div>
