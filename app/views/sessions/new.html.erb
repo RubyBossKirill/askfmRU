@@ -3,13 +3,17 @@
 <div class="form">
   <%= form_tag sessions_path do %>
     <div class="form-field">
-      <%= label_tag :email, 'Введите Email', class="form-label" %>
-      <%= text_field_tag :email, params[:email], class="form-text-field" %>
+      <%= label_tag :email, 'Введите Email', class: "form-label" %>
+      <%= text_field_tag :email, params[:email], class: "form-text-field" %>
     </div>
 
     <div class="form-field">
-      <%= label_tag :password, 'Введите пароль', class="form-label" %>
-      <%= password_field_tag :password, class="form-text-field" %>
+      <%= label_tag :password, 'Введите пароль', class: "form-label" %>
+      <%= password_field_tag :password, '', class: "form-text-field" %>
+    </div>
+
+    <div class="form-action">
+      <%= submit_tag 'Войти', class: 'btn form-btn'%>
     </div>
   <% end %>
 </div>
