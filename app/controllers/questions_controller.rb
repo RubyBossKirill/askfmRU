@@ -30,7 +30,7 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    redirect_to user_path(params[:user_id]), notice: "Вопрос удалён"
+    redirect_to user_path(params[:user_id]), alert: "Вопрос удалён"
   end
 
   private

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   # GET /users/1
   def show
+    @question = @user.questions.build
   end
 
   # GET /users/new
