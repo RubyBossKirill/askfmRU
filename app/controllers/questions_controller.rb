@@ -30,7 +30,17 @@ class QuestionsController < ApplicationController
   end
 
   def destroy
-    redirect_to user_path(params[:user_id]), alert: "Вопрос удалён"
+    unless current_user == @user
+      redirect_to user_path(params[:user_id]), alert: "Вы можете удалить только свой вопрос!"
+      return
+    end
+    @question = Question.find_by(id: params[:id])
+    if @question.nil?
+      redirect_to user_path(params[:user_id]), alert: "Вопрос, который вы хотите удалить, небыл найден"
+      return
+    end
+    @question.destroy
+    redirect_to user_path(params[:user_id]), notice: "Вопрос удалён"
   end
 
   private

@@ -9,6 +9,7 @@ class UsersController < ApplicationController
   
   # GET /users/1
   def show
+    @questions = @user.questions.reject(&:new_record?)
     @question = @user.questions.build
   end
 
