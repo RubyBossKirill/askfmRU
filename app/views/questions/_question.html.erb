@@ -1,8 +1,10 @@
 <div class="questions">
   <% questions.each do |question| %>
-    <h2>Тема: <%= question.title %></h2>
-    <h4>Вопрос: <%= question.body %></h4>
-    <%= button_to 'Удалить вопрос', user_question_path(question.user_id, question.id), method: :delete %>
+    <div class="questions-block" style="background-color: <%= question.background_color %>">
+      <h2>Тема: <%= question.title %></h2>
+      <h4>Вопрос: <%= question.body %></h4>
+      <%= button_to 'Удалить вопрос', user_question_path(question.user_id, question.id), method: :delete %>
+    </div>
     <hr style="height: 3px; background-color: black">
   <% end %>
 </div>
