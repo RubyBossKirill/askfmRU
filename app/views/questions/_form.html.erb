@@ -21,7 +21,7 @@
     </div>
     <div class="form-question-field">
       <%= f.label :background_color, 'Выберите цвет', class: 'form-question-label' %>
-      <%= f.select :background_color, options_for_select(random_color, selected: question.background_color)%>
+      <%= f.select :background_color, options_for_select(Question::COLOR.sort_by{rand}, selected: question.background_color)%>
     </div>
     <div class="form-question-btn">
       <%= f.submit 'Отправить вопрос', class: 'btn form-question-btn' %>
